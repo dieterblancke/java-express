@@ -254,7 +254,6 @@ public class Response {
      * @return If operation was successful
      */
     public boolean sendBytes(byte[] bytes) {
-
         if (isClosed() || bytes == null) {
             return false;
         }
@@ -277,6 +276,25 @@ public class Response {
             close();
         }
 
+        return true;
+    }
+
+    public boolean sendBytes(byte[] bytes, String mediaType) {
+        if (isClosed() || bytes == null) {
+            return false;
+        }
+
+        try {
+            this.contentLength = bytes.length;
+            this.setHeader("Content-Type", mediaType);
+            sendHeaders();
+            this.body.write(bytes);
+        } catch (IOException e) {
+            logger.log(Level.INFO, "Failed to pipe file to outputstream.", e);
+            return false;
+        } finally {
+            close();
+        }
         return true;
     }
 
