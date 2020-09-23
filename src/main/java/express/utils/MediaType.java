@@ -575,7 +575,7 @@ public enum MediaType {
     _jpg("jpg", "image/jpeg"),
     _pjpeg("pjpeg", "image/pjpeg"),
     _ktx("ktx", "image/ktx"),
-    _png("png", "image/x-citrix-png"),
+    _png("png", "image/png"),
     _btif("btif", "image/prs.btif"),
     _svg("svg", "image/svg+xml"),
     _tiff("tiff", "image/tiff"),
